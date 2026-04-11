@@ -226,9 +226,9 @@ a {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  max-width: var(--reading-width);
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -300,23 +300,12 @@ a {
 }
 
 .project-tags {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-secondary);
-  padding: 2px 0;
-  border: 1px solid var(--highlight);
-  border-radius: 2px;
+  display: none;
 }
 
 .project-title {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary);
   margin-bottom: 4px;
@@ -325,19 +314,13 @@ a {
 }
 
 .project-desc {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: var(--space-sm);
-  flex: 1;
+  display: none;
 }
 
 .project-links {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   margin-top: auto;
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--highlight);
 }
 
 .project-link {
@@ -351,8 +334,8 @@ a {
 }
 
 .project-link svg {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 .project-link:hover {
@@ -360,7 +343,7 @@ a {
 }
 
 .project-link--demo {
-  display: none;
+  display: flex;
 }
 
 /* ============================================
@@ -573,13 +556,20 @@ a {
 /* ============================================
    Responsive
    ============================================ */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 600px) {
   .section {
     padding: var(--space-lg) 0;
   }
 
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
   }
 
   .footer .container {
