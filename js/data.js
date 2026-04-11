@@ -55,7 +55,8 @@ const siteData = {
           "url": "#",
           "icon": "<i data-lucide=\"external-link\"></i>"
         }
-      ]
+      ],
+      "image": "images/projects/project-1775927012722-1775927012722.jpg"
     }
   ],
   "travels": [

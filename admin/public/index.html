@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>个人主页 - 内容管理后台</title>
+  <!-- 引入 Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- 引入 Tailwind CSS CDN 以快速构建样式 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+  <div id="app" class="max-w-6xl mx-auto p-6">
+    <header class="flex justify-between items-center mb-8 border-b pb-4">
+      <h1 class="text-3xl font-extrabold text-indigo-600">主页内容管理后台</h1>
+      <button @click="saveData" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg shadow font-bold transition">
+        保存所有修改到 data.js
+      </button>
+    </header>
+    
+    <!-- Tab 切换栏 -->
+    <div class="flex gap-4 mb-6">
+      <button @click="tab = 'projects'" 
+              class="px-6 py-2 rounded-full font-bold transition"
+              :class="tab === 'projects' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100 border'">
+        ✨ 项目管理
+      </button>
+      <button @click="tab = 'travels'" 
+              class="px-6 py-2 rounded-full font-bold transition"
+              :class="tab === 'travels' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100 border'">
+        🌍 世界管理
+      </button>
+    </div>
+
+    <!-- =============== 项目管理区域 =============== -->
+    <div v-if="tab === 'projects'">
+      <div v-for="(proj, index) in data.projects" :key="proj.id" class="bg-white border p-6 mb-6 rounded-xl shadow-sm relative">
+        <button @click="removeProject(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full" title="删除该项目">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        </button>
+
+        <h3 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">项目 #{{ index + 1 }}</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 左侧基本信息 -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">项目标题</label>
+            <input v-model="proj.title" placeholder="如：迷你城市规划师" class="border p-2 w-full mb-4 rounded bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 outline-none">
+            
+            <label class="block text-sm font-medium text-gray-700 mb-1">项目描述</label>
+            <textarea v-model="proj.description" placeholder="请输入项目介绍..." class="border p-2 w-full h-32 mb-4 rounded bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 outline-none"></textarea>
+          </div>
+
+          <!-- 右侧图片与链接 -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">封面图片 (本地上传或填 URL)</label>
+            <div class="flex gap-2 items-start mb-4">
+              <div class="flex-grow">
+                <input v-model="proj.image" placeholder="图片路径或在线 URL" class="border p-2 w-full rounded bg-gray-50 mb-2">
+                <div v-if="proj.image" class="h-24 w-32 bg-gray-100 rounded border overflow-hidden">
+                  <img :src="'../' + proj.image" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                </div>
+              </div>
+              <label class="bg-gray-100 border border-gray-300 hover:bg-gray-200 cursor-pointer px-4 py-2 rounded text-sm whitespace-nowrap">
+                上传图片
+                <input type="file" @change="uploadImage($event, proj, 'projects')" class="hidden" accept="image/*">
+              </label>
+            </div>
+            
+            <div class="flex justify-between items-center mb-2 mt-4">
+              <label class="block text-sm font-medium text-gray-700">操作链接 (如 GitHub/Demo)</label>
+              <button @click="addLink(proj)" class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded hover:bg-indigo-200">+ 新增链接</button>
+            </div>
+            
+            <div v-for="(link, lIndex) in proj.links" class="flex gap-2 mb-2 items-center bg-gray-50 p-2 rounded border">
+              <input v-model="link.name" placeholder="名称(如 GitHub)" class="border p-1 text-sm w-24 rounded">
+              <input v-model="link.url" placeholder="链接地址" class="border p-1 text-sm flex-grow rounded">
+              <button @click="proj.links.splice(lIndex, 1)" class="text-red-500 text-sm px-2">删除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button @click="addProject" class="w-full py-4 border-2 border-dashed border-indigo-300 text-indigo-600 rounded-xl hover:bg-indigo-50 font-bold text-lg transition">
+        + 添加新项目
+      </button>
+    </div>
+
+    <!-- =============== 世界管理区域 =============== -->
+    <div v-if="tab === 'travels'">
+      <div v-for="(tr, index) in data.travels" :key="tr.id" class="bg-white border p-6 mb-6 rounded-xl shadow-sm relative">
+        <button @click="removeTravel(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full" title="删除该足迹">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        </button>
+
+        <h3 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">旅行足迹 #{{ index + 1 }}</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">时间节点 (如：2024.03)</label>
+            <input v-model="tr.date" placeholder="时间节点" class="border p-2 w-full mb-4 rounded bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 outline-none">
+            
+            <label class="block text-sm font-medium text-gray-700 mb-1">地点名称</label>
+            <input v-model="tr.location" placeholder="如：日本京都" class="border p-2 w-full mb-4 rounded bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 outline-none">
+            
+            <label class="block text-sm font-medium text-gray-700 mb-1">图片描述 (Alt)</label>
+            <input v-model="tr.alt" placeholder="图片内容的简单英文或中文描述" class="border p-2 w-full mb-4 rounded bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">风景照片</label>
+            <div class="flex gap-2 items-start mb-4">
+              <div class="flex-grow">
+                <input v-model="tr.image" placeholder="图片路径或在线 URL" class="border p-2 w-full rounded bg-gray-50 mb-2">
+                <div v-if="tr.image" class="h-32 w-32 bg-gray-100 rounded border overflow-hidden">
+                  <!-- 如果是 http 开头则直接渲染，否则从相对路径渲染 -->
+                  <img :src="tr.image.startsWith('http') ? tr.image : '../' + tr.image" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                </div>
+              </div>
+              <label class="bg-gray-100 border border-gray-300 hover:bg-gray-200 cursor-pointer px-4 py-2 rounded text-sm whitespace-nowrap">
+                上传图片
+                <input type="file" @change="uploadImage($event, tr, 'travels')" class="hidden" accept="image/*">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button @click="addTravel" class="w-full py-4 border-2 border-dashed border-indigo-300 text-indigo-600 rounded-xl hover:bg-indigo-50 font-bold text-lg transition">
+        + 添加新足迹
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          tab: 'projects', // 当前选中的 Tab
+          data: { 
+            projects: [], 
+            travels: [] 
+          }
+        }
+      },
+      mounted() {
+        // 页面加载时从后台接口获取数据
+        this.fetchData();
+      },
+      methods: {
+        async fetchData() {
+          try {
+            const res = await fetch('/api/data');
+            const d = await res.json();
+            if (d && d.projects) {
+              this.data = d;
+            }
+          } catch (err) {
+            console.error('获取数据失败', err);
+          }
+        },
+        addProject() {
+          this.data.projects.push({ 
+            id: Date.now(), 
+            title: '', 
+            description: '', 
+            image: '', 
+            links: [] 
+          });
+        },
+        removeProject(index) {
+          if(confirm('确定要删除这个项目吗？')) {
+            this.data.projects.splice(index, 1);
+          }
+        },
+        addLink(proj) {
+          if(!proj.links) proj.links = [];
+          // 提供一个默认的 github svg 图标模板
+          const defaultIcon = `<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+          proj.links.push({ name: '', url: '', icon: defaultIcon });
+        },
+        addTravel() {
+          this.data.travels.push({ 
+            id: Date.now(), 
+            date: '', 
+            location: '', 
+            image: '', 
+            alt: '', 
+            isLast: false 
+          });
+        },
+        removeTravel(index) {
+          if(confirm('确定要删除这个旅行足迹吗？')) {
+            this.data.travels.splice(index, 1);
+          }
+        },
+        async uploadImage(event, item, folder) {
+          const file = event.target.files[0];
+          if(!file) return;
+          
+          const formData = new FormData();
+          formData.append('image', file);
+          formData.append('folder', folder); // 决定传到哪个子目录
+          // 传递当前条目的 ID 给后端，用于图片重命名
+          if (item.id) {
+            formData.append('id', item.id);
+          }
+          
+          try {
+            const res = await fetch('/api/upload', { 
+              method: 'POST', 
+              body: formData 
+            });
+            const result = await res.json();
+            if(result.url) {
+              // 更新对应条目的图片路径
+              item.image = result.url;
+            } else {
+              alert('上传失败：' + result.error);
+            }
+          } catch (err) {
+            alert('上传出错！' + err.message);
+          }
+        },
+        async saveData() {
+          // 自动处理 travel 节点的 isLast 状态（最后一个没有连接线）
+          if (this.data.travels && this.data.travels.length > 0) {
+            this.data.travels.forEach((t, i) => {
+              t.isLast = (i === this.data.travels.length - 1);
+            });
+          }
+          
+          try {
+            const res = await fetch('/api/data', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.data)
+            });
+            const result = await res.json();
+            if(res.ok && result.success) {
+              alert('保存成功！刷新你的个人主页即可看到最新修改。');
+            } else {
+              alert('保存失败！' + (result.error || '未知错误'));
+            }
+          } catch (err) {
+            alert('网络或服务器错误！' + err.message);
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
