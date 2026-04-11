@@ -468,7 +468,7 @@ ul {
   border-radius: 10px;
 }
 
-.travel-timeline.active {
+.travel-timeline.is-dragging {
   scroll-snap-type: none;
   cursor: grabbing;
 }
