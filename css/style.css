@@ -325,7 +325,8 @@ a {
   transition: all var(--transition-fast);
 }
 
-.project-link svg {
+.project-link svg,
+.project-link .icon {
   width: 12px;
   height: 12px;
 }
