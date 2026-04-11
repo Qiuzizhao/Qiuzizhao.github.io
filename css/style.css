@@ -5,7 +5,7 @@
 /* CSS Variables */
 :root {
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F0F0F0;
+  --bg-secondary: #F5F5F5;
   --bg-dark: #1A1A1A;
   --text-primary: #1A1A1A;
   --text-secondary: #666666;
@@ -13,7 +13,7 @@
   --accent-primary: #000000;
   --accent-secondary: #333333;
   --accent-tertiary: #999999;
-  --highlight: #E0E0E0;
+  --highlight: #E5E5E5;
 
   --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -123,26 +123,27 @@ a {
    Hero Section
    ============================================ */
 .hero {
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: var(--space-lg);
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-xl) var(--space-lg);
   position: relative;
-  background: var(--bg-dark);
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--bg-dark);
 }
 
 .hero-content {
-  max-width: 100%;
+  max-width: 800px;
 }
 
 .hero-greeting {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 400;
-  color: #888888;
+  color: var(--text-secondary);
   margin-bottom: var(--space-sm);
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -150,42 +151,43 @@ a {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 15vw, 8rem);
+  font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 700;
   line-height: 1;
-  color: var(--text-inverse);
+  color: var(--bg-dark);
   margin-bottom: var(--space-md);
   letter-spacing: -0.02em;
 }
 
 .hero-tagline {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 400;
-  color: #888888;
+  color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: var(--space-lg);
-  letter-spacing: 0.05em;
+  margin-bottom: 0;
+  letter-spacing: 0.02em;
 }
 
 .hero-cta {
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .btn-text {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-inverse);
-  padding: var(--space-sm) 0;
-  border: none;
+  color: var(--text-primary);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--bg-dark);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: opacity var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .btn-text:hover {
-  opacity: 0.6;
+  background: var(--bg-dark);
+  color: var(--text-inverse);
 }
 
 /* Hero Stagger Delays */
@@ -206,7 +208,7 @@ a {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 500;
-  color: #888888;
+  color: var(--text-secondary);
   margin-bottom: var(--space-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -215,7 +217,7 @@ a {
 .section-line {
   width: 16px;
   height: 1px;
-  background: #444444;
+  background: var(--bg-dark);
   margin: 0;
 }
 
@@ -223,22 +225,22 @@ a {
    Projects Section
    ============================================ */
 .projects {
-  background: var(--bg-dark);
-  padding: var(--space-xl) 0;
+  background: var(--bg-primary);
+  padding: var(--space-xl) var(--space-lg);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: var(--space-md);
   max-width: 1000px;
   margin: 0 auto;
-  background: var(--accent-primary);
 }
 
 .project-card {
-  background: var(--bg-dark);
-  transition: background var(--transition-fast);
+  background: var(--bg-primary);
+  border: 1px solid var(--bg-dark);
+  transition: all var(--transition-fast);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -249,7 +251,16 @@ a {
 }
 
 .project-card:hover {
-  background: #2a2a2a;
+  background: var(--bg-dark);
+}
+
+.project-card:hover .project-title {
+  color: var(--text-inverse);
+}
+
+.project-card:hover .project-link {
+  color: var(--text-inverse);
+  border-color: var(--text-inverse);
 }
 
 /* Project Image */
@@ -258,17 +269,17 @@ a {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   display: block;
-  background: #2a2a2a;
+  background: var(--bg-secondary);
 }
 
 .project-image-placeholder {
   width: 100%;
   aspect-ratio: 16 / 10;
-  background: #2a2a2a;
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .project-image-placeholder svg {
@@ -301,7 +312,7 @@ a {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-inverse);
+  color: var(--text-primary);
   margin-bottom: 8px;
   line-height: 1.4;
   letter-spacing: 0;
@@ -322,10 +333,10 @@ a {
   align-items: center;
   gap: 4px;
   font-size: 0.65rem;
-  color: var(--text-inverse);
+  color: var(--text-primary);
   letter-spacing: 0.05em;
   padding: 6px 12px;
-  border: 1px solid #444444;
+  border: 1px solid var(--bg-dark);
   transition: all var(--transition-fast);
 }
 
@@ -337,9 +348,8 @@ a {
 }
 
 .project-link:hover {
-  background: var(--text-inverse);
-  color: var(--bg-dark);
-  border-color: var(--text-inverse);
+  background: var(--bg-dark);
+  color: var(--text-inverse);
 }
 
 .project-link--demo {
@@ -515,8 +525,8 @@ a {
    ============================================ */
 .footer {
   padding: var(--space-md) 0;
-  background: var(--bg-dark);
-  border-top: 1px solid #333333;
+  background: var(--bg-primary);
+  border-top: 2px solid var(--bg-dark);
 }
 
 .footer .container {
@@ -528,7 +538,7 @@ a {
 .footer-text {
   font-family: var(--font-body);
   font-size: 0.7rem;
-  color: #666666;
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
 }
 
@@ -538,7 +548,7 @@ a {
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: #666666;
+  color: var(--text-secondary);
   transition: color var(--transition-fast);
 }
 
@@ -548,7 +558,7 @@ a {
 }
 
 .footer-link:hover {
-  color: var(--text-inverse);
+  color: var(--bg-dark);
 }
 
 /* ============================================
