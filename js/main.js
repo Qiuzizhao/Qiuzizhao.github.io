@@ -47,65 +47,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // 4. 时间轴拖拽滑动 (Drag to scroll) & 滚动显示 (Scroll to show)
+  // 4. 监听滚轮事件显示时间轴 (改为纵向后只保留显示逻辑)
   const slider = document.querySelector('.travel-timeline');
   const travelSection = document.querySelector('#travel');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
   let hasScrolled = false;
 
   if (slider && travelSection) {
-    // 监听滚轮事件，显示时间轴
-    travelSection.addEventListener('wheel', (e) => {
+    const showTimeline = () => {
       if (!hasScrolled) {
         slider.classList.add('active-scroll');
         hasScrolled = true;
       }
-    }, { passive: true });
+    };
 
-    // 监听触摸滑动事件（针对移动端），显示时间轴
-    travelSection.addEventListener('touchmove', (e) => {
-      if (!hasScrolled) {
-        slider.classList.add('active-scroll');
-        hasScrolled = true;
-      }
-    }, { passive: true });
-
-    // 鼠标拖拽逻辑
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('is-dragging');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-      
-      // 防止浏览器默认拖拽行为导致上下晃动或选中文本
-      // 如果点击的是图片/链接，不要立刻 preventDefault 否则无法点击，可以只在mousemove里阻止
-      
-      // 如果还没显示，点击拖拽也会触发显示
-      if (!hasScrolled) {
-        slider.classList.add('active-scroll');
-        hasScrolled = true;
-      }
-    });
+    travelSection.addEventListener('wheel', showTimeline, { passive: true });
+    travelSection.addEventListener('touchmove', showTimeline, { passive: true });
     
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('is-dragging');
-    });
-    
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('is-dragging');
-    });
-    
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault(); // 移动时阻止默认行为（防止上下晃动）
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // 滑动速度倍率
-      slider.scrollLeft = scrollLeft - walk;
-    });
+    // 当鼠标移入区域时也显示，以防用户不滚动直接看
+    travelSection.addEventListener('mouseenter', showTimeline, { passive: true });
   }
   
   // 6. 渲染函数
@@ -154,8 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!travelTimeline || !window.siteData || !window.siteData.travels) return;
 
     let html = '';
-    window.siteData.travels.forEach(travel => {
-      const lineHtml = travel.isLast ? '' : '<div class="travel-line"></div>';
+    window.siteData.travels.forEach((travel, index) => {
+      const isLast = travel.isLast !== undefined ? travel.isLast : (index === window.siteData.travels.length - 1);
+      const lineHtml = isLast ? '' : '<div class="travel-line"></div>';
       
       html += `
         <div class="travel-card">
