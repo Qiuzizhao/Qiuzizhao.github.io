@@ -23,7 +23,7 @@ const siteData = {
     {
       "id": 1775934321591,
       "title": "生成式人工智能后端（AI Backend）",
-      "description": "",
+      "description": "一个多模态 AI 后端服务，基于 Python 开发，提供统一的 HTTP API。项目集成了 19 项核心 AI 功能，包括知识库增强对话（RAG）、文生图（Stable Diffusion）、文本转语音（TTS）以及图像向量化等，支持前端或其它服务直接调用。",
       "image": "images/projects/project-1775934327605-1775934327605.png",
       "links": [
         {
