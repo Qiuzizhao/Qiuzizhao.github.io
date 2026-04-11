@@ -132,7 +132,7 @@ a {
 }
 
 .hero-content {
-  max-width: 700px;
+  max-width: 100%;
 }
 
 .hero-greeting {
@@ -221,14 +221,14 @@ a {
    ============================================ */
 .projects {
   background: var(--bg-primary);
-  padding-top: var(--space-xl);
+  padding-top: var(--space-lg);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
