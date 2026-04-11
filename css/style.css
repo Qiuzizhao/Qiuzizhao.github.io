@@ -309,7 +309,7 @@ a {
 
 .project-links {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   margin-top: auto;
 }
 
@@ -318,17 +318,21 @@ a {
   align-items: center;
   gap: 4px;
   font-size: 0.7rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border: 1px solid var(--text-primary);
+  transition: all var(--transition-fast);
 }
 
 .project-link svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .project-link:hover {
-  color: var(--text-primary);
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 .project-link--demo {
