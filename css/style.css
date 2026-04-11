@@ -493,15 +493,20 @@ ul {
 
 .travel-timeline {
   display: flex;
-  flex-direction: column;
   gap: 3rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 3rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
+  scrollbar-width: none; /* 手写风隐藏默认滚动条 */
   padding-top: 2rem;
-  max-width: 600px;
-  margin: 0 auto;
+}
+
+.travel-timeline::-webkit-scrollbar {
+  display: none;
 }
 
 .travel-timeline.active-scroll {
@@ -509,20 +514,31 @@ ul {
   pointer-events: auto;
 }
 
+.travel-timeline.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+}
+
 .travel-card {
-  display: grid;
-  grid-template-columns: 100px 40px 1fr;
-  gap: 1.5rem;
+  flex: 0 0 280px;
+  scroll-snap-align: center;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
   transition: var(--transition);
+  user-select: none;
+}
+
+.travel-timeline.is-dragging .travel-card {
+  cursor: grabbing;
 }
 
 .travel-date {
-  font-family: var(--font-en);
+  font-family: var(--font-en); /* 日期用英文字体更有感觉 */
   font-size: 1.4rem;
   color: var(--text);
-  justify-self: end;
-  align-self: start;
-  margin-top: 4px;
+  margin-bottom: 1rem;
+  align-self: flex-start;
   position: relative;
 }
 
@@ -538,10 +554,10 @@ ul {
 
 .travel-node-wrapper {
   position: relative;
+  height: 40px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 100%;
+  margin-bottom: 1.5rem;
 }
 
 /* 手绘图钉节点 */
@@ -554,7 +570,6 @@ ul {
   z-index: 2;
   transition: var(--transition);
   position: relative;
-  flex-shrink: 0;
 }
 
 .travel-node::after {
@@ -576,13 +591,13 @@ ul {
 /* 手绘连接线 */
 .travel-line {
   position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: calc(100% + 3rem - 16px);
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 100' preserveAspectRatio='none'%3E%3Cpath d='M5 0 Q 2 25, 5 50 T 5 100' stroke='%232C2A29' stroke-width='2' stroke-dasharray='4,6' fill='none'/%3E%3C/svg%3E") repeat-y;
-  background-size: 10px 30px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 3rem);
+  height: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5 Q 25 2, 50 5 T 100 5' stroke='%232C2A29' stroke-width='2' stroke-dasharray='4,6' fill='none'/%3E%3C/svg%3E") repeat-x;
+  background-size: 30px 10px;
   z-index: 1;
 }
 
@@ -745,18 +760,13 @@ ul {
   .footer-brand {
     align-items: center;
   }
-
-  .travel-card {
-    grid-template-columns: 70px 30px 1fr;
-    gap: 1rem;
-  }
-  
-  .travel-date {
-    font-size: 1.1rem;
-  }
 }
 
 @media (max-width: 480px) {
+  .travel-card {
+    flex: 0 0 240px;
+  }
+  
   .hero-title {
     font-size: 4rem;
   }
