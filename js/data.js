@@ -76,7 +76,7 @@ const siteData = {
       "id": 1775975063946,
       "title": "地牢探险游戏（TombRaider）",
       "description": "一个基于 C++ 和 Easy2D 引擎开发的 2D 地牢闯关游戏。包含完整的地图探索、敌人 AI 与战斗系统，支持本地 JSON 数据存档、多场景切换（主菜单/暂停/排行榜）及排行榜功能，将数据结构与游戏逻辑完美结合。",
-      "image": "images/projects/project-1775975105230-1775975105230.png",
+      "image": "images/projects/project-1775975239651-1775975239651.png",
       "links": [
         {
           "name": "GitHub",
