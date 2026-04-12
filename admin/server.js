@@ -3,6 +3,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const sharp = require('sharp');
 
 const app = express();
 const PORT = 3000;
@@ -79,15 +80,38 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 图片上传接口
-app.post('/api/upload', upload.single('image'), (req, res) => {
+app.post('/api/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: '没有接收到文件' });
     }
     const folderName = req.body.folder || 'projects';
+    const filePath = req.file.path;
     
-    // 返回相对路径，以便直接保存在 data.js 中供主页调用
-    const relativePath = `images/${folderName}/${req.file.filename}`;
-    res.json({ success: true, url: relativePath });
+    try {
+        // 如果文件大于 1MB，则进行压缩
+        if (req.file.size > 1024 * 1024) {
+            const tempPath = filePath + '.temp';
+            await sharp(filePath)
+                .resize(800, null, { // 限制最大宽度为800，高度按比例缩放
+                    withoutEnlargement: true,
+                })
+                .jpeg({ quality: 80 }) // 压缩质量
+                .toFile(tempPath);
+                
+            // 替换原文件
+            fs.unlinkSync(filePath);
+            fs.renameSync(tempPath, filePath);
+        }
+        
+        // 返回相对路径，以便直接保存在 data.js 中供主页调用
+        const relativePath = `images/${folderName}/${req.file.filename}`;
+        res.json({ success: true, url: relativePath });
+    } catch (err) {
+        console.error('图片压缩失败:', err);
+        // 压缩失败的话返回原图路径
+        const relativePath = `images/${folderName}/${req.file.filename}`;
+        res.json({ success: true, url: relativePath });
+    }
 });
 
 // 启动服务器
