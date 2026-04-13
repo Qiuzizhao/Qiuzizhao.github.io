@@ -241,29 +241,14 @@ ul {
   letter-spacing: 0.1em; /* 增加字间距 */
 }
 
-.hero-tagline-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem; /* 控制两行文字的间距 */
-  align-items: center;
-  margin-bottom: 3rem;
-}
-
-.hero-tagline-line {
+.hero-tagline {
   font-size: 1.3rem;
   color: var(--text-muted);
   line-height: 1.5;
   font-family: var(--font-heading);
   font-style: italic;
   letter-spacing: 0.1em;
-}
-
-.hero-tagline-line:first-child {
-  transform: translateX(-1rem); /* 第一行偏左 */
-}
-
-.hero-tagline-line:last-child {
-  transform: translateX(1rem); /* 第二行偏右 */
+  margin-bottom: 3rem;
 }
 
 /* ============================================
@@ -543,11 +528,8 @@ ul {
     margin-bottom: 1rem;
   }
 
-  .hero-tagline-line {
+  .hero-tagline {
     font-size: 1.05rem;
-  }
-
-  .hero-tagline-wrapper {
     margin-bottom: 2rem;
   }
 
