@@ -236,19 +236,8 @@ ul {
 .hero-title {
   font-size: clamp(4rem, 12vw, 8rem); /* 加大标题字体 */
   line-height: 1;
-  margin-bottom: 2rem;
   color: var(--text);
   letter-spacing: 0.1em; /* 增加字间距 */
-}
-
-.hero-tagline {
-  font-size: 1.3rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  font-family: var(--font-heading);
-  font-style: italic;
-  letter-spacing: 0.1em;
-  margin-bottom: 3rem;
 }
 
 /* ============================================
@@ -525,12 +514,6 @@ ul {
 
   .hero-title {
     font-size: clamp(2.8rem, 10vw, 4rem); /* 调整标题缩放比例 */
-    margin-bottom: 1rem;
-  }
-
-  .hero-tagline {
-    font-size: 1.05rem;
-    margin-bottom: 2rem;
   }
 
   .section-title {

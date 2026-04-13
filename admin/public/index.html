@@ -5,6 +5,8 @@
   <title>个人主页 - 内容管理后台</title>
   <!-- 引入 Vue 3 CDN -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- 引入 SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <!-- 引入 Tailwind CSS CDN 以快速构建样式 -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -32,13 +34,19 @@
     </div>
 
     <!-- =============== 项目管理区域 =============== -->
-    <div v-if="tab === 'projects'">
-      <div v-for="(proj, index) in data.projects" :key="proj.id" class="bg-white border p-6 mb-6 rounded-xl shadow-sm relative">
-        <button @click="removeProject(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full" title="删除该项目">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-        </button>
+    <div v-show="tab === 'projects'">
+      <div ref="projectList">
+        <div v-for="(proj, index) in data.projects" :key="proj.id" class="bg-white border p-6 mb-6 rounded-xl shadow-sm relative">
+          <button @click="removeProject(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full" title="删除该项目">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          </button>
 
-        <h3 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">项目 #{{ index + 1 }}</h3>
+          <h3 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2 flex items-center">
+            <span class="cursor-move mr-2 text-gray-400 hover:text-indigo-500 drag-handle" title="拖拽以排序">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+            </span>
+            项目 #{{ index + 1 }}
+          </h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- 左侧基本信息 -->
@@ -79,13 +87,14 @@
           </div>
         </div>
       </div>
+      </div>
       <button @click="addProject" class="w-full py-4 border-2 border-dashed border-indigo-300 text-indigo-600 rounded-xl hover:bg-indigo-50 font-bold text-lg transition">
         + 添加新项目
       </button>
     </div>
 
     <!-- =============== 世界管理区域 =============== -->
-    <div v-if="tab === 'travels'">
+    <div v-show="tab === 'travels'">
       <div v-for="(tr, index) in data.travels" :key="tr.id" class="bg-white border p-6 mb-6 rounded-xl shadow-sm relative">
         <button @click="removeTravel(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full" title="删除该足迹">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -145,6 +154,9 @@
       mounted() {
         // 页面加载时从后台接口获取数据
         this.fetchData();
+        
+        // 初始化项目拖拽排序
+        this.initSortable();
       },
       methods: {
         async fetchData() {
