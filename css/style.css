@@ -63,6 +63,13 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* 全局草稿纸网格背景 */
+  background-image: 
+    linear-gradient(var(--border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+  background-size: 40px 40px; /* 控制网格大小 */
+  background-position: center top;
 }
 
 a {
@@ -171,6 +178,7 @@ ul {
 .hero-bg-blob {
   position: absolute;
   inset: 0;
+  /* 原本的局部背景光晕，保留即可，由于 body 已经有了全局网格，这里不需要再画网格 */
   background: radial-gradient(circle at center, var(--border-light) 0%, transparent 70%);
   opacity: 0.5;
   z-index: 0;
@@ -309,7 +317,8 @@ ul {
    ============================================ */
 .projects {
   padding: var(--space-xl) var(--space);
-  background: var(--bg);
+  /* 移除这里的纯色背景，让 body 的网格透过来 */
+  background: transparent;
   border-top: 1px solid var(--border);
 }
 
@@ -417,7 +426,8 @@ ul {
    ============================================ */
 .travel {
   padding: var(--space-xl) var(--space);
-  background: var(--bg);
+  /* 移除这里的纯色背景，让 body 的网格透过来 */
+  background: transparent;
   border-top: 1px solid var(--border);
 }
 
