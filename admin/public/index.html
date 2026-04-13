@@ -159,6 +159,32 @@
         this.initSortable();
       },
       methods: {
+        initSortable() {
+          if (this.$refs.projectList) {
+            Sortable.create(this.$refs.projectList, {
+              handle: '.drag-handle',
+              animation: 150,
+              onEnd: (evt) => {
+                const { oldIndex, newIndex, item } = evt;
+                if (oldIndex === newIndex) return;
+                
+                // 恢复 DOM，让 Vue 来处理实际的渲染变化
+                const parent = item.parentNode;
+                parent.removeChild(item);
+                
+                if (oldIndex < parent.children.length) {
+                  parent.insertBefore(item, parent.children[oldIndex]);
+                } else {
+                  parent.appendChild(item);
+                }
+                
+                // 更新 Vue 数据
+                const movedItem = this.data.projects.splice(oldIndex, 1)[0];
+                this.data.projects.splice(newIndex, 0, movedItem);
+              }
+            });
+          }
+        },
         async fetchData() {
           try {
             const res = await fetch('/api/data');
