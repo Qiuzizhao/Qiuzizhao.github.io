@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    个人主页 - 现代极简风 (Modern Minimalist)
    ============================================ */
 
@@ -157,13 +157,13 @@ ul {
    Hero Section
    ============================================ */
 .hero {
-  min-height: 100vh;
+  min-height: 80vh; /* 减少高度占地 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--space-lg) var(--space);
+  padding: calc(var(--space-lg) + 40px) var(--space) var(--space-lg);
   position: relative;
   overflow: hidden;
 }
@@ -183,31 +183,67 @@ ul {
   width: 100%;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--text);
   letter-spacing: -0.02em;
 }
 
 .hero-tagline {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
   line-height: 1.6;
+}
+
+.hero-social {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.hero-social-link {
+  color: var(--text-muted);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.hero-social-link:hover {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .hero-cta {
   display: inline-flex;
   gap: 1rem;
   justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-copyright {
+  font-size: 0.85rem;
+  color: var(--border);
+  margin-top: 1rem;
 }
 
 .btn-primary {
@@ -383,7 +419,6 @@ ul {
   padding: var(--space-xl) var(--space);
   background: var(--bg);
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 
 .travel-timeline {
@@ -507,71 +542,6 @@ ul {
 }
 
 /* ============================================
-   Footer
-   ============================================ */
-.footer {
-  padding: var(--space-lg) var(--space);
-  background: var(--bg);
-}
-
-.footer-content {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footer-logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-}
-
-.footer-text {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.footer-social {
-  display: flex;
-  gap: 1rem;
-}
-
-.footer-link {
-  color: var(--text-muted);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.footer-link:hover {
-  background: var(--primary);
-  color: var(--bg);
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.footer-link svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2;
-}
-
-/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 768px) {
@@ -586,16 +556,6 @@ ul {
   
   .hero-title {
     font-size: 3.5rem;
-  }
-  
-  .footer-content {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-  }
-  
-  .footer-brand {
-    align-items: center;
   }
 }
 
