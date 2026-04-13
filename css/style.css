@@ -1,45 +1,38 @@
-/* ============================================
-   个人主页 - 现代极简风 (Modern Minimalist)
+﻿/* ============================================
+   个人主页 - 典雅主题 (Elegant & Classic)
    ============================================ */
 
 /* CSS Variables */
 :root {
-  /* Colors */
-  --bg: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --text: #111111;
-  --text-muted: #666666;
-  --border: #EAEAEA;
-  --border-light: #F5F5F5;
-  --primary: #111111;
-  --primary-hover: #333333;
-  --primary-light: #F9F9F9;
-  --hover-bg: #F5F5F5;
+  /* Colors - Warm & Elegant */
+  --bg: #F5F4F0;           /* 典雅的浅米灰底色 */
+  --bg-card: #FFFFFF;      /* 纯白纸张感 */
+  --text: #2C2A28;         /* 深炭灰，比纯黑更柔和 */
+  --text-muted: #7A7571;
+  --border: #E8E5DF;
+  --border-light: #F2F0EB;
+  --primary: #8C7A6B;      /* 典雅的复古棕/低饱和金 */
+  --primary-hover: #5C4D3C;
 
-  /* Fonts - 现代无衬线字体 */
-  --font-zh: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-en: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', Monaco, 'Inconsolata', monospace;
-  --font-default: var(--font-en), var(--font-zh);
+  /* Fonts - 衬线体与无衬线体的优雅结合 */
+  --font-heading: 'Playfair Display', 'Noto Serif SC', serif;
+  --font-body: 'Inter', 'Noto Sans SC', sans-serif;
 
   /* Space & Sizes */
-  --space: 2rem;
+  --space: 2.5rem;
   --space-lg: 6rem;
   --space-xl: 8rem;
-
-  --max-width: 1100px;
+  --max-width: 1000px; /* 收窄内容区，更显精致 */
   
-  /* Radius - 现代圆角 */
-  --radius: 16px;
-  --radius-sm: 8px;
-  --radius-btn: 8px;
-
-  /* Shadows - 柔和阴影 */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
+  /* Radius - 极小的圆角，更显硬朗和复古纸张感 */
+  --radius: 2px;
+  --radius-sm: 0px;
   
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* Shadows - 极度柔和的弥散阴影 */
+  --shadow-sm: 0 4px 20px rgba(44, 42, 40, 0.03);
+  --shadow: 0 10px 40px rgba(44, 42, 40, 0.06);
+  
+  --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Reset */
@@ -56,21 +49,20 @@ html {
 }
 
 body {
-  font-family: var(--font-default);
+  font-family: var(--font-body);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.8;
   color: var(--text);
-  /* body 底色设为极浅的灰色或者透明，以便让网格显示 */
-  background: #FAFAFA;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* 全局草稿纸网格背景 */
-  background-image: 
-    linear-gradient(var(--border-light) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
-  background-size: 24px 24px; /* 网格变小变细 */
-  background-position: center top;
+}
+
+/* 统一的标题字体 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--text);
 }
 
 a {
@@ -87,8 +79,8 @@ ul {
    ============================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(25px);
+  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .reveal.active {
@@ -101,6 +93,57 @@ ul {
 .delay-300 { transition-delay: 300ms; }
 
 /* ============================================
+   Common Layout
+   ============================================ */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: var(--bg-card);
+  box-shadow: var(--shadow); 
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+}
+
+/* 典雅的标题下方装饰线 */
+.section-header::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--primary);
+  margin: 1.5rem auto 0;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: var(--font-heading);
+  font-style: italic; /* 斜体增加文学感 */
+}
+
+/* ============================================
    Navbar
    ============================================ */
 .navbar {
@@ -108,15 +151,15 @@ ul {
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .navbar-container {
@@ -130,10 +173,11 @@ ul {
 }
 
 .nav-logo {
-  font-family: var(--font-en);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--primary);
 }
 
 .nav-links {
@@ -143,29 +187,29 @@ ul {
 }
 
 .nav-links a {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   transition: var(--transition);
   display: flex;
   align-items: center;
-  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase; /* 大写英文更有杂志感 */
 }
 
 .nav-links a:hover {
-  color: var(--text);
+  color: var(--primary);
 }
 
 .nav-icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2;
+  width: 18px;
+  height: 18px;
 }
 
 /* ============================================
    Hero Section
    ============================================ */
 .hero {
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -177,13 +221,7 @@ ul {
 }
 
 .hero-bg-blob {
-  position: absolute;
-  inset: 0;
-  /* 原本的局部背景光晕，保留即可，由于 body 已经有了全局网格，这里不需要再画网格 */
-  background: radial-gradient(circle at center, var(--border-light) 0%, transparent 70%);
-  opacity: 0.5;
-  z-index: 0;
-  pointer-events: none;
+  display: none; /* 移除之前的光晕背景，保持干净 */
 }
 
 .hero-content {
@@ -196,129 +234,48 @@ ul {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 700;
+  font-size: clamp(3.5rem, 8vw, 6rem);
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--text);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.08em;
 }
 
 .hero-tagline {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   max-width: 600px;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-family: var(--font-heading);
+  font-style: italic;
 }
 
 .hero-social {
-  margin-bottom: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
 }
 
 .hero-social-link {
   color: var(--text-muted);
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--bg-card);
   border: 1px solid var(--border);
+  background: transparent;
   transition: var(--transition);
 }
 
 .hero-social-link:hover {
+  color: var(--bg-card);
   background: var(--primary);
-  color: var(--bg);
   border-color: var(--primary);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-sm);
-}
-
-.hero-cta {
-  display: inline-flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.hero-copyright {
-  font-size: 0.85rem;
-  color: var(--border);
-  margin-top: 1rem;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.8rem 1.8rem;
-  background: var(--primary);
-  color: var(--bg);
-  border-radius: var(--radius-btn);
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
-}
-
-.btn-primary svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2;
-  transition: transform 0.3s ease;
-}
-
-.btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-
-.btn-primary:hover svg {
-  transform: translateX(4px);
-}
-
-/* ============================================
-   Common Layout
-   ============================================ */
-.page-wrapper {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  background: var(--bg);
-  box-shadow: var(--shadow); /* 使用更明显的阴影 */
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.section-header {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* ============================================
@@ -330,34 +287,34 @@ ul {
   border-top: none;
 }
 
+.projects .container {
+  padding: 0 var(--space);
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+  background: transparent;
+  border-bottom: 1px solid var(--border); /* 改为下划线分割样式 */
+  padding-bottom: 2rem;
   transition: var(--transition);
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-  border-color: transparent;
+  border-color: var(--primary);
 }
 
 .project-image-placeholder,
 .project-image {
   aspect-ratio: 16 / 10;
   background: var(--bg);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -371,18 +328,13 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s ease, filter 0.8s ease;
+  filter: contrast(0.95) sepia(0.05); /* 轻微的老照片滤镜感 */
 }
 
 .project-card:hover .project-image img {
   transform: scale(1.03);
-}
-
-.project-image-placeholder svg {
-  width: 32px;
-  height: 32px;
-  stroke-width: 1.5;
-  opacity: 0.5;
+  filter: contrast(1) sepia(0);
 }
 
 .project-info {
@@ -391,21 +343,22 @@ ul {
 }
 
 .project-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  font-family: var(--font-heading);
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 .project-desc {
   font-size: 0.95rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .project-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
 
@@ -413,9 +366,11 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: var(--transition);
 }
 
@@ -426,7 +381,7 @@ ul {
 .project-link svg {
   width: 16px;
   height: 16px;
-  stroke-width: 2;
+  stroke-width: 1.5;
 }
 
 /* ============================================
@@ -444,7 +399,7 @@ ul {
 
 .travel-timeline {
   display: flex;
-  gap: 2.5rem;
+  gap: 3rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -471,7 +426,7 @@ ul {
 }
 
 .travel-card {
-  flex: 0 0 300px;
+  flex: 0 0 280px;
   scroll-snap-align: center;
   cursor: grab;
   display: flex;
@@ -485,11 +440,12 @@ ul {
 }
 
 .travel-date {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--primary);
   margin-bottom: 1rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.05em;
 }
 
 .travel-node-wrapper {
@@ -500,11 +456,12 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+/* 典雅的节点圆环设计 */
 .travel-node {
-  width: 12px;
-  height: 12px;
-  background: var(--bg);
-  border: 2px solid var(--primary);
+  width: 10px;
+  height: 10px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--primary);
   border-radius: 50%;
   z-index: 2;
   transition: var(--transition);
@@ -512,15 +469,15 @@ ul {
 
 .travel-card:hover .travel-node {
   background: var(--primary);
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 
 .travel-line {
   position: absolute;
-  left: 12px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  width: calc(100% + 2.5rem);
+  width: calc(100% + 3rem);
   height: 1px;
   background: var(--border);
   z-index: 1;
@@ -529,27 +486,23 @@ ul {
 .travel-image {
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   position: relative;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
 }
 
 .travel-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.travel-card:hover .travel-image {
-  box-shadow: var(--shadow);
+  transition: transform 0.8s ease, filter 0.8s ease;
+  filter: grayscale(0.15) sepia(0.1);
 }
 
 .travel-card:hover .travel-image img {
   transform: scale(1.05);
+  filter: grayscale(0) sepia(0);
 }
 
 .travel-info {
@@ -557,9 +510,11 @@ ul {
 }
 
 .travel-location {
-  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text);
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
@@ -572,17 +527,22 @@ ul {
   
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
   
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
+  }
+  
+  .page-wrapper {
+    border-left: none;
+    border-right: none;
   }
 }
 
 @media (max-width: 480px) {
   .travel-card {
-    flex: 0 0 260px;
+    flex: 0 0 240px;
   }
   
   .hero-title {
