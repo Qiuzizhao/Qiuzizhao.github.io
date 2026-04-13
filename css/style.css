@@ -234,48 +234,36 @@ ul {
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  font-size: clamp(4rem, 12vw, 8rem); /* 加大标题字体 */
+  line-height: 1;
+  margin-bottom: 2rem;
   color: var(--text);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em; /* 增加字间距 */
 }
 
-.hero-tagline {
-  font-size: 1.2rem;
-  color: var(--text-muted);
+.hero-tagline-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 控制两行文字的间距 */
+  align-items: center;
   margin-bottom: 3rem;
-  max-width: 600px;
-  line-height: 1.8;
+}
+
+.hero-tagline-line {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  line-height: 1.5;
   font-family: var(--font-heading);
   font-style: italic;
+  letter-spacing: 0.1em;
 }
 
-.hero-social {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
+.hero-tagline-line:first-child {
+  transform: translateX(-1rem); /* 第一行偏左 */
 }
 
-.hero-social-link {
-  color: var(--text-muted);
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: transparent;
-  transition: var(--transition);
-}
-
-.hero-social-link:hover {
-  color: var(--bg-card);
-  background: var(--primary);
-  border-color: var(--primary);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-sm);
+.hero-tagline-line:last-child {
+  transform: translateX(1rem); /* 第二行偏右 */
 }
 
 /* ============================================
@@ -555,8 +543,11 @@ ul {
     margin-bottom: 1rem;
   }
 
-  .hero-tagline {
+  .hero-tagline-line {
     font-size: 1.05rem;
+  }
+
+  .hero-tagline-wrapper {
     margin-bottom: 2rem;
   }
 
