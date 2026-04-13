@@ -399,7 +399,7 @@ ul {
 
 .travel-timeline {
   display: flex;
-  gap: 3rem;
+  gap: 2rem; /* 移动端缩小间距 */
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -433,6 +433,7 @@ ul {
   flex-direction: column;
   transition: var(--transition);
   user-select: none;
+  -webkit-user-drag: none; /* 修复移动端滑动时可能被误认为拖拽图片的bug */
 }
 
 .travel-timeline.is-dragging .travel-card {
@@ -477,7 +478,7 @@ ul {
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  width: calc(100% + 3rem);
+  width: calc(100% + 2rem);
   height: 1px;
   background: var(--border);
   z-index: 1;
@@ -498,6 +499,7 @@ ul {
   object-fit: cover;
   transition: transform 0.8s ease, filter 0.8s ease;
   filter: grayscale(0.15) sepia(0.1);
+  pointer-events: none; /* 移动端禁止图片原生拖拽触发 */
 }
 
 .travel-card:hover .travel-image img {
@@ -521,31 +523,77 @@ ul {
    Responsive
    ============================================ */
 @media (max-width: 768px) {
+  :root {
+    --space: 1.5rem; /* 缩小基础内边距 */
+    --space-lg: 4rem; /* 缩小大间距 */
+    --space-xl: 5rem; /* 缩小超大间距 */
+  }
+
+  .navbar {
+    height: 60px; /* 缩小导航栏高度 */
+  }
+
   .nav-links {
-    gap: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .nav-links a {
+    font-size: 0.85rem; /* 缩小导航栏字体 */
+  }
+
+  .nav-logo {
+    font-size: 1.3rem;
+  }
+
+  .hero {
+    padding: calc(var(--space-lg) + 60px) var(--space) var(--space-lg);
+    min-height: 75vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 10vw, 4rem); /* 调整标题缩放比例 */
+    margin-bottom: 1rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
   }
   
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  
-  .hero-title {
-    font-size: 3rem;
+    gap: 2rem;
   }
   
   .page-wrapper {
     border-left: none;
     border-right: none;
+    box-shadow: none; /* 移动端移除外层阴影，显得更平*/
   }
 }
 
 @media (max-width: 480px) {
-  .travel-card {
-    flex: 0 0 240px;
+  :root {
+    --space: 1.25rem; /* 进一步缩小手机端内边距 */
   }
-  
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
   .hero-title {
     font-size: 2.5rem;
+  }
+
+  .travel-card {
+    flex: 0 0 85vw; /* 让卡片宽度适应屏幕比例，而不是固定像素 */
   }
 }
