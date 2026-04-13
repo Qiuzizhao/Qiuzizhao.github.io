@@ -60,7 +60,8 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--text);
-  background: var(--bg);
+  /* body 底色设为极浅的灰色或者透明，以便让网格显示 */
+  background: #FAFAFA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
@@ -164,13 +165,13 @@ ul {
    Hero Section
    ============================================ */
 .hero {
-  min-height: 80vh; /* 减少高度占地 */
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(var(--space-lg) + 40px) var(--space) var(--space-lg);
+  padding: calc(var(--space-lg) + 80px) var(--space) 0; /* 仅调整间距 */
   position: relative;
   overflow: hidden;
 }
@@ -194,6 +195,10 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--bg);
+  padding: var(--space-xl) var(--space);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
 .hero-title {
@@ -291,6 +296,9 @@ ul {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); 
 }
 
 .section-header {
@@ -316,12 +324,12 @@ ul {
    Projects Section
    ============================================ */
 .projects {
-  padding: var(--space-xl) var(--space);
-  /* 移除这里的纯色背景，让 body 的网格透过来 */
+  padding: var(--space-lg) 0; /* 修改外层边距，将内边距转移到 container */
   background: transparent;
-  border-top: 1px solid var(--border);
+  border-top: none; /* 移除横向分隔线，因为 container 现在是独立的块 */
 }
 
+.projects .container {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -425,10 +433,13 @@ ul {
    Travel Section
    ============================================ */
 .travel {
-  padding: var(--space-xl) var(--space);
-  /* 移除这里的纯色背景，让 body 的网格透过来 */
+  padding: 0 0 var(--space-xl);
   background: transparent;
-  border-top: 1px solid var(--border);
+  border-top: none;
+}
+
+.travel .container {
+  padding: var(--space-xl) var(--space);
 }
 
 .travel-timeline {
