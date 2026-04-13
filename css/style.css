@@ -68,7 +68,7 @@ body {
   background-image: 
     linear-gradient(var(--border-light) 1px, transparent 1px),
     linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
-  background-size: 40px 40px; /* 控制网格大小 */
+  background-size: 24px 24px; /* 网格变小变细 */
   background-position: center top;
 }
 
