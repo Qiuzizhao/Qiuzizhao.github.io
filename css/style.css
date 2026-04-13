@@ -171,7 +171,7 @@ ul {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(var(--space-lg) + 80px) var(--space) 0; /* 仅调整间距 */
+  padding: calc(var(--space-lg) + 80px) var(--space) var(--space-lg);
   position: relative;
   overflow: hidden;
 }
@@ -187,18 +187,12 @@ ul {
 }
 
 .hero-content {
-  max-width: var(--max-width);
-  margin: 0 auto;
   width: 100%;
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--bg);
-  padding: var(--space-xl) var(--space);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
 }
 
 .hero-title {
@@ -293,12 +287,19 @@ ul {
 /* ============================================
    Common Layout
    ============================================ */
-.container {
+.page-wrapper {
   max-width: var(--max-width);
   margin: 0 auto;
   background: var(--bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm); 
+  box-shadow: var(--shadow); /* 使用更明显的阴影 */
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .section-header {
@@ -324,12 +325,11 @@ ul {
    Projects Section
    ============================================ */
 .projects {
-  padding: var(--space-lg) 0; /* 修改外层边距，将内边距转移到 container */
+  padding: var(--space-lg) 0;
   background: transparent;
-  border-top: none; /* 移除横向分隔线，因为 container 现在是独立的块 */
+  border-top: none;
 }
 
-.projects .container {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -433,13 +433,13 @@ ul {
    Travel Section
    ============================================ */
 .travel {
-  padding: 0 0 var(--space-xl);
+  padding: var(--space-xl) 0;
   background: transparent;
   border-top: none;
 }
 
 .travel .container {
-  padding: var(--space-xl) var(--space);
+  padding: 0 var(--space);
 }
 
 .travel-timeline {
