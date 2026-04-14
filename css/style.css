@@ -22,7 +22,7 @@
   --space: 2.5rem;
   --space-lg: 6rem;
   --space-xl: 8rem;
-  --max-width: 1000px; /* 收窄内容区，更显精致 */
+  --max-width: 1200px; /* 收窄内容区，更显精致 */
   
   /* Radius - 极小的圆角，更显硬朗和复古纸张感 */
   --radius: 2px;
@@ -99,7 +99,7 @@ ul {
   max-width: var(--max-width);
   margin: 0 auto;
   background: var(--bg-card);
-  box-shadow: var(--shadow); 
+  box-shadow: var(--shadow);
   min-height: 100vh;
   position: relative;
   z-index: 1;
@@ -255,7 +255,7 @@ ul {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 3rem;
 }
 
