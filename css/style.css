@@ -22,7 +22,7 @@
   --space: 2.5rem;
   --space-lg: 6rem;
   --space-xl: 8rem;
-  --max-width: 1200px; /* 收窄内容区，更显精致 */
+  --max-width: 1000px; /* 收窄内容区，更显精致 */
   
   /* Radius - 极小的圆角，更显硬朗和复古纸张感 */
   --radius: 2px;
@@ -54,6 +54,11 @@ body {
   line-height: 1.8;
   color: var(--text);
   background: var(--bg);
+  /* 添加草稿纸网格背景 */
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -255,7 +260,7 @@ ul {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
 }
 
