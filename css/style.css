@@ -22,15 +22,15 @@
   --space: 2.5rem;
   --space-lg: 6rem;
   --space-xl: 8rem;
-  --max-width: 1180px;
+  --max-width: 1240px;
   
   /* Radius - 极小的圆角，更显硬朗和复古纸张感 */
   --radius: 4px;
   --radius-sm: 0px;
   
   /* Shadows - 极度柔和的弥散阴影 */
-  --shadow-sm: 0 6px 24px rgba(28, 23, 18, 0.05);
-  --shadow: 0 18px 56px rgba(28, 23, 18, 0.1);
+  --shadow-sm: 0 8px 28px rgba(28, 23, 18, 0.06);
+  --shadow: 0 26px 80px rgba(28, 23, 18, 0.12);
   
   --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -53,7 +53,7 @@ body {
   font-weight: 400;
   line-height: 1.8;
   color: var(--text);
-  background: radial-gradient(circle at top, #faf7f2 0%, #f1ece3 58%, #ece6dc 100%);
+  background: radial-gradient(circle at top, #faf7f2 0%, #eee7dc 60%, #e7e0d5 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -97,13 +97,14 @@ ul {
    ============================================ */
 .page-wrapper {
   max-width: var(--max-width);
-  margin: 1.25rem auto 2.75rem;
+  margin: 1.4rem auto 3rem;
   background: var(--bg-card);
   box-shadow: var(--shadow); 
   min-height: 100vh;
   position: relative;
   z-index: 1;
   border: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .container {
@@ -112,7 +113,7 @@ ul {
 }
 
 .section-header {
-  margin-bottom: 4.25rem;
+  margin-bottom: 4.5rem;
   text-align: center;
   position: relative;
 }
@@ -130,7 +131,7 @@ ul {
 .section-title {
   font-size: clamp(2rem, 2.6vw, 2.8rem);
   margin-bottom: 0.8rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -141,6 +142,7 @@ ul {
   margin: 0 auto;
   font-family: var(--font-heading);
   font-style: italic;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
@@ -152,7 +154,7 @@ ul {
   left: 0;
   right: 0;
   height: 80px;
-  background: rgba(255, 252, 248, 0.88);
+  background: rgba(255, 252, 248, 0.82);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
@@ -174,7 +176,7 @@ ul {
 
 .nav-logo {
   font-family: var(--font-heading);
-  font-size: 1.52rem;
+  font-size: 1.48rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--primary);
@@ -192,7 +194,7 @@ ul {
   transition: var(--transition);
   display: flex;
   align-items: center;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -216,13 +218,20 @@ ul {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(var(--space-lg) + 90px) var(--space) calc(var(--space-lg) * 0.9);
+  padding: calc(var(--space-lg) + 92px) var(--space) calc(var(--space-lg) * 0.85);
   position: relative;
   overflow: hidden;
 }
 
 .hero-bg-blob {
-  display: none; /* 移除之前的光晕背景，保持干净 */
+  position: absolute;
+  width: min(72vw, 900px);
+  height: min(72vw, 900px);
+  background: radial-gradient(circle, rgba(110, 88, 67, 0.12) 0%, rgba(110, 88, 67, 0.04) 38%, rgba(110, 88, 67, 0) 72%);
+  top: -42%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -234,20 +243,43 @@ ul {
   align-items: center;
 }
 
+.hero-content::before {
+  content: 'Portfolio';
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .hero-title {
-  font-size: clamp(4.6rem, 11vw, 7.4rem);
-  line-height: 1;
+  font-size: clamp(5.2rem, 12vw, 8.8rem);
+  line-height: 0.93;
   color: var(--text);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-shadow: 0 2px 0 rgba(255, 255, 255, 0.65);
+  position: relative;
+  padding: 0 0.15em;
+}
+
+.hero-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -1.2rem;
+  width: clamp(120px, 20vw, 220px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary) 22%, var(--primary) 78%, transparent 100%);
 }
 
 /* ============================================
    Projects Section
    ============================================ */
 .projects {
-  padding: calc(var(--space-lg) * 0.9) 0;
+  padding: calc(var(--space-lg) * 1) 0;
   background: transparent;
   border-top: none;
 }
@@ -259,7 +291,7 @@ ul {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 2rem;
+  gap: 1.8rem;
 }
 
 .project-card {
@@ -272,6 +304,7 @@ ul {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   grid-column: span 6;
+  position: relative;
 }
 
 .project-card:hover {
@@ -280,11 +313,34 @@ ul {
   transform: translateY(-5px);
 }
 
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b79c80 0%, #7e654e 100%);
+  opacity: 0.65;
+}
+
+.project-card:nth-child(1) {
+  grid-column: span 8;
+}
+
+.project-card:nth-child(2) {
+  grid-column: span 4;
+}
+
+.project-card:nth-child(2) .project-desc {
+  line-height: 1.9;
+}
+
 .project-image-placeholder,
 .project-image {
   aspect-ratio: 16 / 10;
   background: var(--bg);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,7 +373,7 @@ ul {
   font-family: var(--font-heading);
   font-weight: 600;
   margin-bottom: 0.8rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -359,7 +415,7 @@ ul {
    Travel Section
    ============================================ */
 .travel {
-  padding: calc(var(--space-xl) * 0.85) 0 var(--space-xl);
+  padding: calc(var(--space-xl) * 0.78) 0 var(--space-xl);
   background: transparent;
   border-top: none;
 }
@@ -397,7 +453,7 @@ ul {
 }
 
 .travel-card {
-  flex: 0 0 336px;
+  flex: 0 0 360px;
   scroll-snap-align: center;
   cursor: grab;
   display: flex;
@@ -459,7 +515,7 @@ ul {
 .travel-image {
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   margin-bottom: 1.2rem;
   position: relative;
@@ -494,7 +550,7 @@ ul {
 
 @media (min-width: 1200px) {
   .projects-grid {
-    gap: 2.3rem;
+    gap: 2rem;
   }
 
   .project-card:nth-child(3n + 1) {
@@ -561,6 +617,19 @@ ul {
   .project-card {
     grid-column: auto;
     transform: none !important;
+  }
+
+  .project-card:nth-child(1),
+  .project-card:nth-child(2) {
+    grid-column: auto;
+  }
+
+  .hero-content::before {
+    letter-spacing: 0.24em;
+  }
+
+  .hero-title {
+    letter-spacing: 0.12em;
   }
   
   .page-wrapper {
