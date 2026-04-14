@@ -212,7 +212,7 @@ ul {
    Hero Section
    ============================================ */
 .hero {
-  min-height: 60vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
