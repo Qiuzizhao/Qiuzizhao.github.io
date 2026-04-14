@@ -1,18 +1,18 @@
-﻿/* ============================================
+/* ============================================
    个人主页 - 典雅主题 (Elegant & Classic)
    ============================================ */
 
 /* CSS Variables */
 :root {
-  /* Colors - Warm & Elegant */
-  --bg: #F5F4F0;           /* 典雅的浅米灰底色 */
-  --bg-card: #FFFFFF;      /* 纯白纸张感 */
-  --text: #2C2A28;         /* 深炭灰，比纯黑更柔和 */
-  --text-muted: #7A7571;
-  --border: #E8E5DF;
-  --border-light: #F2F0EB;
-  --primary: #8C7A6B;      /* 典雅的复古棕/低饱和金 */
-  --primary-hover: #5C4D3C;
+  /* Colors - Magazine Luxe */
+  --bg: #f3f1ec;
+  --bg-card: #fffcf8;
+  --text: #1f1d1a;
+  --text-muted: #6d655c;
+  --border: #e1d9cd;
+  --border-light: #efe9df;
+  --primary: #6e5843;
+  --primary-hover: #4f3f30;
 
   /* Fonts - 衬线体与无衬线体的优雅结合 */
   --font-heading: 'Playfair Display', 'Noto Serif SC', serif;
@@ -22,15 +22,15 @@
   --space: 2.5rem;
   --space-lg: 6rem;
   --space-xl: 8rem;
-  --max-width: 1120px; /* 桌面端放宽内容区，减少拥挤 */
+  --max-width: 1180px;
   
   /* Radius - 极小的圆角，更显硬朗和复古纸张感 */
-  --radius: 2px;
+  --radius: 4px;
   --radius-sm: 0px;
   
   /* Shadows - 极度柔和的弥散阴影 */
-  --shadow-sm: 0 4px 20px rgba(44, 42, 40, 0.03);
-  --shadow: 0 10px 40px rgba(44, 42, 40, 0.06);
+  --shadow-sm: 0 6px 24px rgba(28, 23, 18, 0.05);
+  --shadow: 0 18px 56px rgba(28, 23, 18, 0.1);
   
   --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -53,7 +53,7 @@ body {
   font-weight: 400;
   line-height: 1.8;
   color: var(--text);
-  background: linear-gradient(180deg, #f8f6f2 0%, #f2eee8 100%);
+  background: radial-gradient(circle at top, #faf7f2 0%, #f1ece3 58%, #ece6dc 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -97,15 +97,13 @@ ul {
    ============================================ */
 .page-wrapper {
   max-width: var(--max-width);
-  margin: 0 auto 2.5rem;
+  margin: 1.25rem auto 2.75rem;
   background: var(--bg-card);
   box-shadow: var(--shadow); 
   min-height: 100vh;
   position: relative;
   z-index: 1;
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
 }
 
 .container {
@@ -114,7 +112,7 @@ ul {
 }
 
 .section-header {
-  margin-bottom: 4rem;
+  margin-bottom: 4.25rem;
   text-align: center;
   position: relative;
 }
@@ -123,25 +121,26 @@ ul {
 .section-header::after {
   content: '';
   display: block;
-  width: 40px;
+  width: 56px;
   height: 1px;
   background: var(--primary);
-  margin: 1.5rem auto 0;
+  margin: 1.2rem auto 0;
 }
 
 .section-title {
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 2.6vw, 2.8rem);
   margin-bottom: 0.8rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section-subtitle {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
   max-width: 600px;
   margin: 0 auto;
   font-family: var(--font-heading);
-  font-style: italic; /* 斜体增加文学感 */
+  font-style: italic;
 }
 
 /* ============================================
@@ -153,10 +152,10 @@ ul {
   left: 0;
   right: 0;
   height: 80px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 252, 248, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-light);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -175,7 +174,7 @@ ul {
 
 .nav-logo {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.52rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--primary);
@@ -193,8 +192,9 @@ ul {
   transition: var(--transition);
   display: flex;
   align-items: center;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.12em;
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .nav-links a:hover {
@@ -210,13 +210,13 @@ ul {
    Hero Section
    ============================================ */
 .hero {
-  min-height: 56vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(var(--space-lg) + 80px) var(--space) var(--space-lg);
+  padding: calc(var(--space-lg) + 90px) var(--space) calc(var(--space-lg) * 0.9);
   position: relative;
   overflow: hidden;
 }
@@ -235,17 +235,19 @@ ul {
 }
 
 .hero-title {
-  font-size: clamp(3.8rem, 10vw, 6.8rem);
+  font-size: clamp(4.6rem, 11vw, 7.4rem);
   line-height: 1;
   color: var(--text);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.65);
 }
 
 /* ============================================
    Projects Section
    ============================================ */
 .projects {
-  padding: var(--space-lg) 0;
+  padding: calc(var(--space-lg) * 0.9) 0;
   background: transparent;
   border-top: none;
 }
@@ -256,25 +258,26 @@ ul {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2rem;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  background: #fffdf9;
+  background: #fffefb;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.1rem 1.1rem 1.6rem;
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem 1.7rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  grid-column: span 6;
 }
 
 .project-card:hover {
-  border-color: #d9d0c5;
+  border-color: #cdbca8;
   box-shadow: var(--shadow);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
 }
 
 .project-image-placeholder,
@@ -296,7 +299,7 @@ ul {
   height: 100%;
   object-fit: cover;
   transition: transform 0.8s ease, filter 0.8s ease;
-  filter: contrast(0.95) sepia(0.05); /* 轻微的老照片滤镜感 */
+  filter: contrast(0.98) saturate(0.92) sepia(0.04);
 }
 
 .project-card:hover .project-image img {
@@ -310,17 +313,18 @@ ul {
 }
 
 .project-title {
-  font-size: 1.22rem;
+  font-size: 1.18rem;
   font-family: var(--font-heading);
   font-weight: 600;
   margin-bottom: 0.8rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .project-desc {
-  font-size: 0.93rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
-  line-height: 1.75;
+  line-height: 1.82;
 }
 
 .project-links {
@@ -333,11 +337,11 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   transition: var(--transition);
 }
 
@@ -355,7 +359,7 @@ ul {
    Travel Section
    ============================================ */
 .travel {
-  padding: var(--space-xl) 0;
+  padding: calc(var(--space-xl) * 0.85) 0 var(--space-xl);
   background: transparent;
   border-top: none;
 }
@@ -366,7 +370,7 @@ ul {
 
 .travel-timeline {
   display: flex;
-  gap: 2rem; /* 移动端缩小间距 */
+  gap: 2.25rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -393,7 +397,7 @@ ul {
 }
 
 .travel-card {
-  flex: 0 0 320px;
+  flex: 0 0 336px;
   scroll-snap-align: center;
   cursor: grab;
   display: flex;
@@ -413,7 +417,8 @@ ul {
   font-style: italic;
   color: var(--primary);
   margin-bottom: 1rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .travel-node-wrapper {
@@ -480,15 +485,28 @@ ul {
 
 .travel-location {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.14rem;
   font-weight: 600;
   color: var(--text);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 @media (min-width: 1200px) {
   .projects-grid {
-    gap: 2.2rem;
+    gap: 2.3rem;
+  }
+
+  .project-card:nth-child(3n + 1) {
+    transform: translateY(0);
+  }
+
+  .project-card:nth-child(3n + 2) {
+    transform: translateY(18px);
+  }
+
+  .project-card:nth-child(3n + 3) {
+    transform: translateY(0);
   }
 }
 
@@ -538,6 +556,11 @@ ul {
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .project-card {
+    grid-column: auto;
+    transform: none !important;
   }
   
   .page-wrapper {
