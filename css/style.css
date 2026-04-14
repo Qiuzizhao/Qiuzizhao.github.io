@@ -594,7 +594,8 @@ ul {
 
   .hero {
     padding: calc(var(--space-lg) + 60px) var(--space) var(--space-lg);
-    min-height: 75vh;
+    min-height: 100vh;
+    min-height: 100svh;
   }
 
   .hero-title {
