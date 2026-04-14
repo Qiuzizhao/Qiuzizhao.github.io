@@ -56,9 +56,10 @@ body {
   background: var(--bg);
   /* 添加草稿纸网格背景 */
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
+  background-position: center top;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -104,7 +105,7 @@ ul {
   max-width: var(--max-width);
   margin: 0 auto;
   background: var(--bg-card);
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.05); /* 更明显的阴影，让白色卡片浮出来 */
   min-height: 100vh;
   position: relative;
   z-index: 1;
