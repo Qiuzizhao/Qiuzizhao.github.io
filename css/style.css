@@ -209,7 +209,8 @@ ul {
   text-transform: none;
 }
 
-.github-mark {
+.github-mark,
+.gitee-mark {
   width: 1em;
   height: 1em;
   flex: none;
