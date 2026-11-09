@@ -203,9 +203,9 @@ ul {
   color: var(--primary);
 }
 
-.nav-icon {
-  width: 18px;
-  height: 18px;
+.nav-links .nav-profile-link {
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 /* ============================================
@@ -278,6 +278,84 @@ ul {
 /* ============================================
    Projects Section
    ============================================ */
+.profile-intro {
+  padding: clamp(7rem, 12vw, 10rem) var(--space) clamp(2.75rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(115deg, #f6eee2, #fffcf8 72%);
+}
+
+.profile-label,
+.recent-card .recent-category {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+.profile-intro h1 {
+  margin: 0.3em 0 0.28em;
+  font-size: clamp(2.65rem, 7vw, 5.1rem);
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+}
+
+.profile-copy {
+  max-width: 36em;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.7vw, 1.14rem);
+}
+
+.recent-work {
+  padding: clamp(2.75rem, 5vw, 4.5rem) var(--space);
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-work .section-header {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.recent-work .section-header::after {
+  margin-left: 0;
+}
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.recent-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffefb;
+}
+
+.recent-card h3 {
+  margin: 0.35rem 0;
+  font-size: 1.22rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.recent-card p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+.recent-card > .project-link,
+.recent-card > .project-links {
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+.recent-card > .project-link {
+  align-self: flex-start;
+}
+
 .projects {
   padding: calc(var(--space-lg) * 1) 0;
   background: transparent;
@@ -359,8 +437,15 @@ ul {
   font-size: 1.18rem;
   font-family: var(--font-heading);
   font-weight: 600;
+  line-height: 1.35;
   margin-bottom: 0.8rem;
   letter-spacing: 0.08em;
+}
+
+.recent-card h3,
+.recent-card p,
+.project-title {
+  overflow-wrap: anywhere;
 }
 
 .project-desc {
@@ -588,6 +673,10 @@ ul {
     gap: 2rem;
   }
 
+  .recent-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .project-card {
     transform: none !important;
   }
@@ -612,8 +701,26 @@ ul {
     --space: 1.25rem; /* 进一步缩小手机端内边距 */
   }
 
+  .navbar-container {
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+
+  .nav-logo {
+    font-size: 1.15rem;
+  }
+
   .nav-links {
-    gap: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .recent-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-title {

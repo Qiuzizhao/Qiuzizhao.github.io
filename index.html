@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qiu | 个人主页</title>
-  <meta name="description" content="一个普通的代码爱好者。">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>日常造物</title>
+  <meta name="description" content="邱的个人主页，记录课堂工具、轻量应用和一些编程实验。">
   
   <!-- Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/vendor/lucide.min.js"></script>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -21,26 +16,201 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="#" class="nav-logo">Qiu.</a>
+      <a href="#top" class="nav-logo">日常造物</a>
       <div class="nav-links">
-        <a href="#projects">工作站</a>
-        <a href="#travel">世界</a>
-        <a href="https://github.com/Qiuzizhao" target="_blank" rel="noopener" class="nav-icon-link">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
+        <a href="#recent">近期项目</a>
+        <a href="#projects">本科时期</a>
+        <a class="nav-profile-link" href="https://github.com/Qiuzizhao" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-profile-link" href="https://gitee.com/" target="_blank" rel="noopener">Gitee</a>
       </div>
     </div>
   </nav>
 
   <!-- Main Wrapper -->
-  <main class="page-wrapper">
+  <main class="page-wrapper" id="top">
+    <header class="profile-intro" aria-labelledby="home-title">
+      <p class="profile-label">邱的个人主页</p>
+      <h1 id="home-title">日常造物</h1>
+      <p class="profile-copy">我是邱。我做一些课堂上用得着的小工具，也写网页、做游戏，偶尔搭一座小镇。这里记录这些项目是做什么的，以及我试过哪些办法。</p>
+    </header>
+
+    <section class="recent-work" id="recent" aria-labelledby="recent-title">
+      <div class="section-header">
+        <h2 class="section-title" id="recent-title">近期项目</h2>
+      </div>
+      <div class="recent-grid">
+        <article class="recent-card">
+          <p class="recent-category">课表与日程</p>
+          <h3>WorkSchedule</h3>
+          <p>查看课表、调代课和日程，支持网页及 iOS、安卓、鸿蒙 App。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">课前提醒</p>
+          <h3>KeRing 系列</h3>
+          <p>KeRing、KeRingSOLO、KeRingComputer</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/KeRing" target="_blank" rel="noopener">班级版 GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">课堂互动</p>
+          <h3>QForm</h3>
+          <p>给表单和互动网页接一个数据接口。学生提交的内容可以汇总、展示或导出。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">课堂记录</p>
+          <h3>课堂小组积分</h3>
+          <p>在课堂上给小组加减分，回看每次记录。多台设备可以看到同一份积分榜。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/JiaFen" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">班级养成</p>
+          <h3>宠物岛（Pets）</h3>
+          <p>班级宠物养成网站，用成长值让宠物孵化、进化。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/pet_island" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">机房管理</p>
+          <h3>Vol Monitor</h3>
+          <p>在机房座位图上实时查看各学生机的音量，只统计音量，不保存录音。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/vol-monitor" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">课堂创作</p>
+          <h3>HtmlDeploy</h3>
+          <p>学生用 AI 对话生成和修改网页，也可上传 HTML。作品可在线预览、按班发布，由教师统一管理。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">文件工具</p>
+          <h3>FileStation</h3>
+          <p>做一个简单的文件中转站。可以上传、下载，也可以给单个文件生成分享链接。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">跨设备工具</p>
+          <h3>Pasteboard</h3>
+          <p>跨设备网页剪贴板，支持传递文字、图片和文件，以及查看历史记录。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">即时聊天</p>
+          <h3>匿名聊天室（ChatRoom）</h3>
+          <p>用随机昵称实时聊天，支持文字、图片、贴纸和在线名单。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">三维实验</p>
+          <h3>风和小镇</h3>
+          <p>用代码搭一座可以漫步的低多边形小镇。从广场走到河边，可以看到灯光随昼夜变化。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">城市模拟</p>
+          <h3>迷你城市规划师</h3>
+          <p>在浏览器里规划 3D 城市，观察交通、天气和昼夜变化。</p>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/Qiuzizhao/city_plan" target="_blank" rel="noopener">GitHub</a>
+            <a class="project-link" href="https://qiuzizhao.github.io/city_plan/" target="_blank" rel="noopener">演示</a>
+          </div>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">强化学习</p>
+          <h3>AI 贪吃蛇</h3>
+          <p>可以自己玩，也可以看用 MaskablePPO 训练的 AI 自动游玩。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/Gluttonous-Snake" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">多人互动</p>
+          <h3>云上办公室（STTG）</h3>
+          <p>用 3D 高斯泼溅还原办公室实景，支持多人在线走动、聊天和拍照。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">个人记录</p>
+          <h3>SuperMe 系列</h3>
+          <p>把待办、随记、账目和足迹放进一个个人工作台，支持网页和 App。</p>
+          <a class="project-link" href="#superme">查看系列 App ↓</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">计算机视觉</p>
+          <h3>AI_FindHead</h3>
+          <p>用 MediaPipe 识别人体关键点，估算头部位置，并在枪战仿真画面中演示目标跟踪。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">历法与排盘</p>
+          <h3>命理（Mingli）</h3>
+          <p>网页历法与排盘工具，涵盖万年历、八字、奇门和七政四余。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/mingli-core" target="_blank" rel="noopener">核心算法库 GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">语音辅助</p>
+          <h3>SimpleTTS</h3>
+          <p>给不便开口的人用的网页朗读工具，支持输入文字或点选短语。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/SimpleTTS" target="_blank" rel="noopener">GitHub</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="recent-work" id="superme" aria-labelledby="superme-title">
+      <div class="section-header">
+        <h2 class="section-title" id="superme-title">SuperMe 系列 App</h2>
+        <p>围绕个人记录和日常管理做的一组独立应用。</p>
+      </div>
+      <div class="recent-grid">
+        <article class="recent-card">
+          <p class="recent-category">旅行记录</p>
+          <h3>足迹（Trip）</h3>
+          <p>记下去过的地方，把旅行里的照片和记录放在一起。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/Trip" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">工作记录</p>
+          <h3>工作日志（WorkLog）</h3>
+          <p>按日期记录做过的工作，也可以用 AI 辅助整理日志草稿。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">个人记账</p>
+          <h3>账本（Booky）</h3>
+          <p>记录收入和支出，按类别查看账目，也可以给开销设预算。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">教学记录</p>
+          <h3>课堂日志（ClassLog）</h3>
+          <p>记录每节课的教学内容，按课程类型整理，方便之后回看。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">日常打卡</p>
+          <h3>打卡（AnyLog）</h3>
+          <p>给日常活动做简单记录，按日期回看每次打卡。</p>
+          <a class="project-link" href="https://github.com/Qiuzizhao/AnyLog" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">任务管理</p>
+          <h3>ToDo</h3>
+          <p>随手添加待办，整理任务和优先级，也可以用 AI 辅助规划。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">随手笔记</p>
+          <h3>简笔（Notes）</h3>
+          <p>随手记下灵感和备忘，之后可以在列表里找到并继续编辑。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">订阅管理</p>
+          <h3>订阅（Subscribe）</h3>
+          <p>记录订阅价格、扣费周期和下次续费日期，看看每月大概要花多少。</p>
+        </article>
+        <article class="recent-card">
+          <p class="recent-category">静坐与专注</p>
+          <h3>静坐计时器（Timer）</h3>
+          <p>静坐与专注倒计时，提供网页版和已上架的 iPhone、iPad App。</p>
+          <div class="project-links">
+            <a class="project-link" href="https://timer.qiuzizhao.com/" target="_blank" rel="noopener">打开网页版</a>
+            <a class="project-link" href="https://apps.apple.com/cn/app/%E9%9D%99%E5%9D%90%E8%AE%A1%E6%97%B6%E5%99%A8/id6784273609" target="_blank" rel="noopener">App Store</a>
+            <a class="project-link" href="https://github.com/Qiuzizhao/timer" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects">
+    <section class="projects" id="projects" aria-labelledby="projects-title">
       <div class="container">
-        <div class="section-header reveal">
-          <h2 class="section-title">工作站</h2>
-          <p class="section-subtitle">偶尔试图改变世界，但通常只逗乐自己</p>
+        <div class="section-header">
+          <h2 class="section-title" id="projects-title">本科时期</h2>
+          <p class="section-subtitle">本科时做过的游戏、算法练习和应用。</p>
         </div>
 
         <div class="projects-grid">
@@ -49,19 +219,6 @@
       </div>
     </section>
 
-    <!-- Travel Section -->
-    <section class="travel" id="travel">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2 class="section-title">世界</h2>
-          <p class="section-subtitle">在路上</p>
-        </div>
-
-        <div class="travel-timeline reveal delay-100">
-          <!-- Data will be injected here by main.js -->
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- JS scripts at the bottom -->
